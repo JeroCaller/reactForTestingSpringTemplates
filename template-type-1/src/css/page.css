@@ -1,0 +1,17 @@
+ul {
+    list-style: none;
+}
+
+ul > li {
+    margin: 1em;
+}
+
+.page-container {
+    padding: 1em;
+    text-align: center;
+}
+
+.error-display {
+    color: red;
+    white-space: pre-line;  /* 입력한 대로 개행하도록 함. */
+}
