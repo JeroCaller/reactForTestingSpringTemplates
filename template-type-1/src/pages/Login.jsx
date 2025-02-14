@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import '../css/page.css';
 import * as utils from '../utils/utils';
-import actionTypes from "../redux/actions";
+import { dispatchers } from "../redux/actionHelper";
 
 const Login = () => {
 
@@ -41,10 +41,12 @@ const Login = () => {
           // redux store에 해당 정보 저장.
           const authUsername = response.data.data.username;
           //console.log(`authed username: ${authNickname}`);
+          /*
           authDispatch({
             type: actionTypes.STORE_AUTH, 
             payload: {username: authUsername, loggedIn: true}
-          });
+          });*/
+          authDispatch(dispatchers.auth.storeAuth(authUsername, true));
 
           // 자동으로 navigating하는 방법
           // https://reactrouter.com/start/library/navigating

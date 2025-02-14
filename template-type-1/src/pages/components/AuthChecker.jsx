@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import * as utils from '../../utils/utils';
-import actionTypes from "../../redux/actions";
+import { dispatchers, selectors } from "../../redux/actionHelper";
 
 /**
  * 현재 사용자가 인증된 사용자인지 체크하고, 인증되었으면 
@@ -20,7 +20,8 @@ const AuthChecker = ({ pageComponent, pathIfNotAuth = "/login" }) => {
   const authDispatch = useDispatch();
 
   // 먼저 store에 저장된 로그인 정보가 있는지 가져온다. 
-  const authInfo = useSelector((state) => state.authReducer.auth);
+  //const authInfo = useSelector((state) => state.authReducer.auth);
+  const authInfo = useSelector(selectors.auth);
   //console.log(authInfo);
   //console.log(authInfo === null);
 
@@ -36,10 +37,13 @@ const AuthChecker = ({ pageComponent, pathIfNotAuth = "/login" }) => {
         // 현재 로그인한 사용자 정보를 redux store에 저장.
         const authUsername = responseData.username;
         //console.log(`authed nickname: ${authNickname}`);
+        /*
         authDispatch({
           type: actionTypes.STORE_AUTH, 
           payload: {username: authUsername, loggedIn: true}
         });
+        */
+        authDispatch(dispatchers.auth.storeAuth(authUsername, true));
       } else {
         console.log("서버 요청 실패");
       }

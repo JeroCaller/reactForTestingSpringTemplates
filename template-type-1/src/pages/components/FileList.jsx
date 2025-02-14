@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as utils from '../../utils/utils';
-import actionTypes from "../../redux/actions";
 
 import FileCard from "./fileSubComponents/FileCard";
 import FileCardContainer from "./fileSubComponents/FileCardContainer";
+import { dispatchers, selectors } from "../../redux/actionHelper";
 
 /**
  * 파일 정보를 리스트로 보여준다. 
@@ -18,8 +18,11 @@ const FileList = ({ userInfo }) => {
 
 	const [fileInfoList, setFileInfoList] = useState([]);
 	const [isAuthError, setIsAuthError] = useState(false);
-	const isFileChanged = useSelector((state) => state.fileChangeReducer.isFileChanged);
+	//const isFileChanged = useSelector((state) => state.fileChangeReducer.isFileChanged);
+	const isFileChanged = useSelector(selectors.file);
+
 	//console.log("isFileChanged : " + isFileChanged);
+	
 	const fileDispath = useDispatch();
 
 	const readFileFromServer = () => {
@@ -49,10 +52,12 @@ const FileList = ({ userInfo }) => {
 
 	if (isFileChanged) {
 		readFileFromServer();
+		/*
 		fileDispath({
 			type: actionTypes.FILE_CHANGED,
 			payload: { isFileChanged: false }
-		});
+		});*/
+		fileDispath(dispatchers.file.fileChanged(false));
 	}
 
 	if (userInfo == null || !userInfo.loggedIn || isAuthError) {

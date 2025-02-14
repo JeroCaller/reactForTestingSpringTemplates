@@ -66,7 +66,7 @@ const getResponseDataFromError = (error) => {
 /**
  * 유효성 검사 실패 데이터 추출.
  * 
- * @param {*} responseData 
+ * @param {*} responseData - error.response.data
  * @returns 
  */
 const extractValidFailedMsg = (responseData) => {

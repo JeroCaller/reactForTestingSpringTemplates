@@ -31,18 +31,6 @@ const DangerZone = () => {
       }
     })
     .catch(error => {
-      /*
-      const expectedStatus = [
-        utils.httpStatusMessages.UNAUTHORIZED,
-        utils.httpStatusMessages.NOT_FOUND,
-      ];
-      if (error.status in expectedStatus) {
-        setMessage(`회원 탈퇴 실패. \n ${error.response.data.message}`);
-      } else {
-        utils.defaultAxiosErrorHandler(error);
-      }
-      */
-      
       const expectedStatus = [
         utils.ApiResponseCode.NOT_AUTHENTICATED,
       ];

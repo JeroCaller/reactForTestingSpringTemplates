@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import * as utils from '../../utils/utils';
-import actionTypes from "../../redux/actions";
 import '../../css/profile.css';
+import { dispatchers } from "../../redux/actionHelper";
 
 /**
  * 회원 정보 수정 화면.
@@ -59,6 +59,7 @@ const ChangeProfile = ({ userInfo }) => {
           const responseData = response.data.data;
           
           // 새로 수정된 닉네임으로 redux store에 새로 저장.
+          /*
           userInfoDispatch({
             type: actionTypes.STORE_AUTH,
             payload: { 
@@ -66,6 +67,10 @@ const ChangeProfile = ({ userInfo }) => {
               loggedIn: true
             }
           });
+          */
+          userInfoDispatch(dispatchers.auth.storeAuth(
+            responseData.newUsername, true
+          ));
 
           alert(`회원 정보 수정 완료!\n닉네임: ${responseData.newUsername}`);
           navigator("/mypage");

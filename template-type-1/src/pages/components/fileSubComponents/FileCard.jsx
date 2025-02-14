@@ -2,7 +2,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 
 import * as utils from '../../../utils/utils';
-import actionTypes from "../../../redux/actions";
+import { dispatchers } from "../../../redux/actionHelper";
 
 const FileCard = ({ fileInfo }) => {
 
@@ -14,10 +14,13 @@ const FileCard = ({ fileInfo }) => {
        .then(response => {
         if (utils.isSuccessHttpStatusCode(response.status)) {
           alert("파일 삭제 성공.");
+          /*
           fileDispath({
             type: actionTypes.FILE_CHANGED,
             payload: { isFileChanged: true}
           });
+          */
+          fileDispath(dispatchers.file.fileChanged(true));
         }
        })
        .catch(error => {

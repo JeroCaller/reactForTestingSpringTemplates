@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import PageHeader from "./components/PageHeader";
 import FileList from "./components/FileList";
 import { Link } from "react-router-dom";
+import { selectors } from "../redux/actionHelper";
 
 /**
  * 현재 로그인한 사용자만의 개인 공간 페이지.
@@ -12,7 +13,8 @@ import { Link } from "react-router-dom";
  */
 const MyPages = () => {
 
-  const authInfo = useSelector((state) => state.authReducer.auth);
+  //const authInfo = useSelector((state) => state.authReducer.auth);
+  const authInfo = useSelector(selectors.auth);
 	
   return (
   	<div className="page-container">

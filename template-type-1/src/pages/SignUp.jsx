@@ -49,7 +49,7 @@ const SignUp = () => {
 
     axios.get(`http://localhost:8080/test/members/${username}`)
       .then(response => {
-        console.log(response.data);
+        //console.log(response.data);
         if (utils.isSuccessHttpStatusCode(response.status)) {
           const isAllowed = !response.data.data;
           setIsChecked(true);

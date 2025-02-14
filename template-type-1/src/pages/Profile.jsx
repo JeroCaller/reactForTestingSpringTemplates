@@ -5,6 +5,7 @@ import ChangeProfile from "./components/ChangeProfile";
 import DangerZone from "./components/DangerZone";
 
 import '../css/profile.css';
+import { selectors } from "../redux/actionHelper";
 
 /**
  * 현재 회원의 정보를 볼 수 있는 곳.
@@ -13,7 +14,8 @@ import '../css/profile.css';
  */
 const Profile = () => {
 
-  const authInfo = useSelector((state) => state.authReducer.auth);
+  //const authInfo = useSelector((state) => state.authReducer.auth);
+  const authInfo = useSelector(selectors.auth);
 
   return (
     <div className="page-container">
