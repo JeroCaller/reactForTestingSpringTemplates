@@ -7,7 +7,15 @@ const initState = {
 	auth: {
 		username: "", 
 		loggedIn: false
-	}
+	},
+	product: {
+		id: 0,
+		name: '',
+		category: '',
+		description: '',
+		amount: 0,
+		price: 0,
+	},
 };
 
 const authReducer = (state = initState, action) => {
@@ -50,4 +58,16 @@ const fileChangeReducer = (state = initState, action) => {
 	}
 }
 
-export { authReducer, fileChangeReducer }
+const productReducer = (state = initState, action) => {
+	switch (action.type) {
+		case actionTypes.SAVE_PRODUCT:
+			return {
+				...state,
+				product: {...action.payload}
+			};
+		default:
+			return state;
+	}
+};
+
+export { authReducer, fileChangeReducer, productReducer }

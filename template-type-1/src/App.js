@@ -8,13 +8,16 @@ import AuthChecker from './pages/components/AuthChecker';
 import axios from 'axios';
 import FileUpload from './pages/FileUpload';
 import Profile from './pages/Profile';
+import Product from './pages/Product';
+import ProductUpdate from './pages/ProductUpdate';
+import ProductInsert from './pages/ProductInsert';
 
 /**
  * 
  * @returns 
  */
 function App() {
-  
+
   axios.defaults.withCredentials = true;
 
   return (
@@ -27,6 +30,9 @@ function App() {
           <Route path="/mypage" element={<AuthChecker pageComponent={<MyPages />} />} />
           <Route path="/upload" element={<AuthChecker pageComponent={<FileUpload />} />} />
           <Route path="/profile" element={<AuthChecker pageComponent={<Profile />} />} />
+          <Route path="/product" element={<Product/>} />
+          <Route path="/product/update" element={<ProductUpdate />} />
+          <Route path="/product/insert" element={<ProductInsert />} />
         </Routes>
       </nav>
     </div>

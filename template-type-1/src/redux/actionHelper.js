@@ -6,6 +6,7 @@ import actionTypes from "./actions";
 const selectors = {
   auth: (state) => state.authReducer.auth,
   file: (state) => state.fileChangeReducer.isFileChanged,
+  product: (state) => state.productReducer.product,
 };
 
 /**
@@ -27,6 +28,12 @@ const dispatchers = {
       payload: { isFileChanged }
     }),
   }, 
+  product: {
+    saveProduct: ( {id, name, category, description, amount, price }) => ({
+      type: actionTypes.SAVE_PRODUCT,
+      payload: {id, name, category, description, amount, price}
+    }),
+  },
 };
 
 export {
