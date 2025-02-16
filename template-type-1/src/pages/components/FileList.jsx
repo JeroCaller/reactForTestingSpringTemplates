@@ -18,10 +18,7 @@ const FileList = ({ userInfo }) => {
 
 	const [fileInfoList, setFileInfoList] = useState([]);
 	const [isAuthError, setIsAuthError] = useState(false);
-	//const isFileChanged = useSelector((state) => state.fileChangeReducer.isFileChanged);
 	const isFileChanged = useSelector(selectors.file);
-
-	//console.log("isFileChanged : " + isFileChanged);
 	
 	const fileDispath = useDispatch();
 
@@ -52,11 +49,6 @@ const FileList = ({ userInfo }) => {
 
 	if (isFileChanged) {
 		readFileFromServer();
-		/*
-		fileDispath({
-			type: actionTypes.FILE_CHANGED,
-			payload: { isFileChanged: false }
-		});*/
 		fileDispath(dispatchers.file.fileChanged(false));
 	}
 

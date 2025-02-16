@@ -18,8 +18,7 @@ const Main = () => {
 				if (utils.getResponseDataFromError(error).code === utils.ApiResponseCode.NOT_AUTHENTICATED) {
 					navigator("/login");
 				} else {
-					console.log("예기치 못한 에러 발생");
-					console.log(error);
+					utils.defaultAxiosErrorHandler(error);
 				}
 			});
 	}

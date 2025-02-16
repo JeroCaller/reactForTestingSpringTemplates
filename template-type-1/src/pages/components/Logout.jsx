@@ -14,18 +14,12 @@ const Logout = () => {
 
 		const doLogout = () => {
 			alert("성공적으로 로그아웃에 성공하였습니다!");
-			/*
-			authDispatch({
-				type: actionTypes.CLEAR_AUTH,
-			});
-			*/
 			authDispatch(dispatchers.auth.clearAuth());
 			navigator("/");  // 메인 페이지로 이동.
 		};
 
 		axios.post("http://localhost:8080/auth/logout")
 			.then(response => {
-				//console.log("then called");
 				if (utils.isSuccessHttpStatusCode(response.status)) {
 					doLogout();
 				}

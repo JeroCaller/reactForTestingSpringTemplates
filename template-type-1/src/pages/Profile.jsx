@@ -14,7 +14,6 @@ import { selectors } from "../redux/actionHelper";
  */
 const Profile = () => {
 
-  //const authInfo = useSelector((state) => state.authReducer.auth);
   const authInfo = useSelector(selectors.auth);
 
   return (

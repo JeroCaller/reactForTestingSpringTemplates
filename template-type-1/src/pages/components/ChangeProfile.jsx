@@ -59,15 +59,6 @@ const ChangeProfile = ({ userInfo }) => {
           const responseData = response.data.data;
           
           // 새로 수정된 닉네임으로 redux store에 새로 저장.
-          /*
-          userInfoDispatch({
-            type: actionTypes.STORE_AUTH,
-            payload: { 
-              username: responseData.newUsername, 
-              loggedIn: true
-            }
-          });
-          */
           userInfoDispatch(dispatchers.auth.storeAuth(
             responseData.newUsername, true
           ));
@@ -87,7 +78,7 @@ const ChangeProfile = ({ userInfo }) => {
           errMsg += utils.extractValidFailedMsg(responseData);
           setMessage(errMsg);
         } else if (responseData.code in expectedStatus) {
-          setMessage(`회원 정보 수정 실패. 에러 원인)\n ${error.response.data.message}`);
+          setMessage(`회원 정보 수정 실패. 에러 원인)\n ${responseData.message}`);
         } else {
           utils.defaultAxiosErrorHandler(error);
         }

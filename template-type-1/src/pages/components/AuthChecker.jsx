@@ -20,15 +20,10 @@ const AuthChecker = ({ pageComponent, pathIfNotAuth = "/login" }) => {
   const authDispatch = useDispatch();
 
   // 먼저 store에 저장된 로그인 정보가 있는지 가져온다. 
-  //const authInfo = useSelector((state) => state.authReducer.auth);
   const authInfo = useSelector(selectors.auth);
-  //console.log(authInfo);
-  //console.log(authInfo === null);
 
   useEffect(() => {
-    //console.log(authInfo);
     if (authInfo && authInfo.loggedIn) return;
-    //console.log("useEffect 내부 진입");
     axios.get("http://localhost:8080/test/members/my")
     .then(response => {
       if (utils.isSuccessHttpStatusCode(response.status)) {
@@ -36,13 +31,6 @@ const AuthChecker = ({ pageComponent, pathIfNotAuth = "/login" }) => {
 
         // 현재 로그인한 사용자 정보를 redux store에 저장.
         const authUsername = responseData.username;
-        //console.log(`authed nickname: ${authNickname}`);
-        /*
-        authDispatch({
-          type: actionTypes.STORE_AUTH, 
-          payload: {username: authUsername, loggedIn: true}
-        });
-        */
         authDispatch(dispatchers.auth.storeAuth(authUsername, true));
       } else {
         console.log("서버 요청 실패");

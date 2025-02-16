@@ -14,31 +14,23 @@ const FileCard = ({ fileInfo }) => {
        .then(response => {
         if (utils.isSuccessHttpStatusCode(response.status)) {
           alert("파일 삭제 성공.");
-          /*
-          fileDispath({
-            type: actionTypes.FILE_CHANGED,
-            payload: { isFileChanged: true}
-          });
-          */
           fileDispath(dispatchers.file.fileChanged(true));
         }
        })
        .catch(error => {
+        const responesData = utils.getResponseDataFromError(error);
         const expectedStatus = [
           utils.httpStatusMessages.NOT_FOUND,
           utils.httpStatusMessages.INTERNAL_SERVER_ERROR
         ];
         if (error.status in expectedStatus) {
-          alert(error.response.data.message);
+          alert(responesData.message);
         } else {
-          console.log("예기치 못한 에러 발생");
-          console.log(error);
+          utils.defaultAxiosErrorHandler(error);
         }
        });
     }
   }
-
-  //console.log(fileInfo.path.substring(1));
 
   return (
     <li key={fileInfo.id} className="file-card">
@@ -48,7 +40,6 @@ const FileCard = ({ fileInfo }) => {
       <p>path: {fileInfo.path}</p>
       <p>description)</p>
       <p>{fileInfo.description}</p>
-      {/*<button onClick={handleDownload}>다운로드</button> */}
       <p>
         <a href={`http://localhost:8080/test/files/my/download/${fileInfo.id}`}>다운로드</a>
       </p>

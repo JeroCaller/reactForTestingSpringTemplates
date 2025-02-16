@@ -64,7 +64,8 @@ const getResponseDataFromError = (error) => {
 };
 
 /**
- * 유효성 검사 실패 데이터 추출.
+ * 유효성 검사 실패 데이터 추출. 
+ * axios의 catch문 안에서 사용.
  * 
  * @param {*} responseData - error.response.data
  * @returns 

@@ -41,11 +41,10 @@ const FileUpload = () => {
     const keyName = "file";
     
     // 업로드하고자 하는 파일 정보를 요청 정보로 변환.
-    // request body에 넣으며, key 이름은 files로, 스프링 서버에서 지정한 
+    // request body에 넣으며, key 이름은 file로, 스프링 서버에서 지정한 
     // 이름으로 고정.
     if (uploadFiles && uploadFiles.length > 0) {
       for (const entity of uploadFiles) {
-        //console.log(entity);
         formData.append(keyName, entity);
       }
     } else {
@@ -54,9 +53,7 @@ const FileUpload = () => {
     }
 
     let formDataJson = utils.extractJsonFromFormData(formData);
-    //console.log(formDataJson);
     formDataJson = {...formDataJson, info: JSON.stringify({description: formDataJson.info})};
-    //console.log(formDataJson);
 
     axios.post("http://localhost:8080/test/files/my", formDataJson, {
       headers: {
@@ -64,13 +61,12 @@ const FileUpload = () => {
       }
     })
       .then(response => {
-        //console.log(response.data.message);
         alert(response.data.message);
         navigator("/mypage");
       })
       .catch(error => {
         if (error.status === utils.httpStatusMessages.INTERNAL_SERVER_ERROR) {
-          alert(error.response.data.message);
+          alert(utils.getResponseDataFromError(error).message);
         } else {
           utils.defaultAxiosErrorHandler(error);
         }

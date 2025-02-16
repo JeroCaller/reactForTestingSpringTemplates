@@ -23,29 +23,17 @@ const Login = () => {
 
     const formData = new FormData(form.current);
     const requestData = utils.extractJsonFromFormData(formData);
-    //console.log(requestData);
 
     axios.post("http://localhost:8080/auth/login", requestData)
       .then(response => {
         // 기존에 로그인 실패하다가 이후 성공한 경우 에러 메시지 초기화.
         setErrorMsg("");
 
-        //console.log(response.status);
-        //console.log(response.data);
-        //console.log(response.data.httpStatus === 'OK');
-        //console.log(utils.isSuccessHttpStatusCode(response.status));
-
         if (utils.isSuccessHttpStatusCode(response.status)) {
 
           // 다른 페이지에서도 현재 인증된 사용자 정보 활용을 위해 
           // redux store에 해당 정보 저장.
           const authUsername = response.data.data.username;
-          //console.log(`authed username: ${authNickname}`);
-          /*
-          authDispatch({
-            type: actionTypes.STORE_AUTH, 
-            payload: {username: authUsername, loggedIn: true}
-          });*/
           authDispatch(dispatchers.auth.storeAuth(authUsername, true));
 
           // 자동으로 navigating하는 방법

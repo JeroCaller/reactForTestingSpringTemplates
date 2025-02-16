@@ -27,9 +27,15 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/mypage" element={<AuthChecker pageComponent={<MyPages />} />} />
-          <Route path="/upload" element={<AuthChecker pageComponent={<FileUpload />} />} />
-          <Route path="/profile" element={<AuthChecker pageComponent={<Profile />} />} />
+          <Route path="/mypage" element={
+            <AuthChecker pageComponent={<MyPages />} />
+          } />
+          <Route path="/upload" element={
+            <AuthChecker pageComponent={<FileUpload />} />
+          } />
+          <Route path="/profile" element={
+            <AuthChecker pageComponent={<Profile />} />
+          } />
           <Route path="/product" element={<Product/>} />
           <Route path="/product/update" element={<ProductUpdate />} />
           <Route path="/product/insert" element={<ProductInsert />} />
